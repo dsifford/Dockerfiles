@@ -28,4 +28,5 @@ COPY --from=builder /build .
 RUN php phpcs.phar --config-set installed_paths /root/wpcs && \
     php phpcs.phar --config-set default_standard WordPress
 
-ENTRYPOINT ["php", "phpcs.phar"]
+WORKDIR /app
+ENTRYPOINT ["php", "/root/phpcs.phar"]
