@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="Custom">
+	<description>Custom WordPress ruleset excluding obnoxious, not helpful whatsoever, errors.</description>
+
+	<rule ref="WordPress">
+		<exclude name="WordPress.VIP.SuperGlobalInputUsage" />
+	</rule>
+</ruleset>
