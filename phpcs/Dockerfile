@@ -9,15 +9,14 @@ RUN apk add --no-cache \
 
 WORKDIR /build
 
-RUN mkdir wpcs && \
+RUN mkdir -p wpcs/Custom && \
     curl \
         -L "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/tarball/$wpcs_version" | tar xz -C wpcs --strip-components 1
 
-COPY ruleset.xml wpcs/Custom/
-
 RUN curl \
         -OL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${phpcs_version:-$(curl -s https://api.github.com/repos/squizlabs/PHP_CodeSniffer/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')}/phpcs.phar" \
-        -OL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${phpcs_version:-$(curl -s https://api.github.com/repos/squizlabs/PHP_CodeSniffer/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')}/phpcbf.phar"
+        -OL "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/${phpcs_version:-$(curl -s https://api.github.com/repos/squizlabs/PHP_CodeSniffer/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')}/phpcbf.phar" \
+        -o wpcs/Custom/ruleset.xml "https://raw.githubusercontent.com/dsifford/Dockerfiles/master/phpcs/ruleset.xml"
 
 
 FROM php:7-cli
