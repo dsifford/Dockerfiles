@@ -1,7 +1,15 @@
 <?xml version="1.0"?>
 <ruleset name="dsifford">
+    <description>Custom WordPress ruleset excluding obnoxious, not helpful whatsoever, errors.</description>
+
     <rule ref="WordPress">
+        <!--
+            Exclude rules here.
+            Example:
+                <exclude name="WordPress.VIP.SuperGlobalInputUsage" />
+        -->
         <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
         <exclude name="WordPress.NamingConventions.ValidHookName" />
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
     </rule>
 </ruleset>
